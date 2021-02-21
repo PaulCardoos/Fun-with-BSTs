@@ -1,11 +1,6 @@
-class Node{
-    constructor(value){
-        this.value = value;
-        this.next = null;
-    }
-}
+let Node = require("./Node.js")
 
-class LinkedList{
+module.exports = class LinkedList{
     constructor(){
         this.head = null;
         this.length = 0; 
@@ -124,39 +119,41 @@ class LinkedList{
         return this;
     }
     printList(){
-        while(this.head != null){
+        let current = this.head;
+        while(current != null){
 
-            if(this.head.next === null){
-                print(this.head.value)
-                this.head = this.head.next;
+            if(current === null){
+                print(current.value)
+                current = current.next;
 
             } else {
-                print(this.head.value + " - ")
-                this.head = this.head.next;
+                print(current.value + " - ")
+                current = current.next;
             }
         }
         return;
     }
 }
 
+
 function print(obj){
     return console.log(obj)
 }
 
-let linkedList = new LinkedList();
-linkedList.insertAtEnd(15);
-linkedList.insertAtEnd(20);
-linkedList.insertAtEnd(25);
-linkedList.insertAtIndex(49, 3)
-let n = linkedList.getNode(4);
-if(n){
-    print("This is the node from getNode : " + n.value);
-}
-// linkedList.remove(15);
-// linkedList.remove(25);
-// linkedList.insertAtBeginning(15);
-// linkedList.insertAtBeginning(20);
-// linkedList.insertAtBeginning(25);
-// linkedList.remove(25);
-linkedList.reverse()
-linkedList.printList()
+// let linkedList = new LinkedList();
+// linkedList.insertAtEnd(15);
+// linkedList.insertAtEnd(20);
+// linkedList.insertAtEnd(25);
+// linkedList.insertAtIndex(49, 3)
+// let n = linkedList.getNode(4);
+// if(n){
+//     print("This is the node from getNode : " + n.value);
+// }
+// // linkedList.remove(15);
+// // linkedList.remove(25);
+// // linkedList.insertAtBeginning(15);
+// // linkedList.insertAtBeginning(20);
+// // linkedList.insertAtBeginning(25);
+// // linkedList.remove(25);
+// linkedList.reverse()
+// linkedList.printList()
