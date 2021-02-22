@@ -1,8 +1,21 @@
 let LinkedList = require("./singlyLinkedList.js")
 let Node = require("./Node.js")
 
-
 let linkedList = new LinkedList();
+
+linkedList.insertAtBeginning(451);
+linkedList.insertAtBeginning(3);
+linkedList.insertAtBeginning(5);
+linkedList.insertAtBeginning(17);
+linkedList.insertAtBeginning(5);
+linkedList.insertAtBeginning(33);
+linkedList.insertAtBeginning(47);
+linkedList.insertAtBeginning(5);
+linkedList.insertAtBeginning(59);
+linkedList.insertAtBeginning(5);
+let list = linkedList.printList()
+console.log(list)
+
 
 //Remove Dups from Cracking the coding interview linked list section 2.1 pg 94
 
@@ -31,18 +44,6 @@ function removeDups(linked, val){
     return linked;
 }
 
-linkedList.insertAtBeginning(451);
-linkedList.insertAtBeginning(3);
-linkedList.insertAtBeginning(5);
-linkedList.insertAtBeginning(17);
-linkedList.insertAtBeginning(5);
-linkedList.insertAtBeginning(33);
-linkedList.insertAtBeginning(47);
-linkedList.insertAtBeginning(5);
-linkedList.insertAtBeginning(59);
-linkedList.insertAtBeginning(5);
-let list = linkedList.printList()
-console.log(list)
 // console.log(linkedList)
 // linkedList = removeDups(linkedList, 5);
 // list = linkedList.printList();
@@ -69,11 +70,8 @@ function kthToLast(linkedList, k){
 // let node = kthToLast(linkedList, 3);
 // console.log(node)
 
-//An algorithm to delete a node in the middle given only access to that node 
-//from Cracking the coding interview Problem 2.3
-
-// a -> b -> c -> d -> e -> f
-//a -> c -> d -> e -> f -> node
+/*An algorithm to delete a node in the middle given only access to that node 
+  from Cracking the coding interview Problem 2.3 */
 
 function deleteMiddleNode(linkedList, node){
     
@@ -90,12 +88,59 @@ function deleteMiddleNode(linkedList, node){
         }
         node = node.next        
     }
-
     return;
 }
 
 //gets a node a specific index
 
-let n = linkedList.getNode(4)
-deleteMiddleNode(linkedList,n)
+ let n = linkedList.getNode(6)
+ console.log("log", n.value)
+// deleteMiddleNode(linkedList,n)
+// linkedList.printList()
+
+
+/* Write code to partition a linked list around a value x, such that all nodes less than x come
+ before all nodes greater than or equal to x from Cracking the coding Problem 2.4 */ 
+
+function partition(linked, n){
+  
+    let current = linked.head;
+    let middle = n.value; 
+    let temp = null;
+
+    while(current !== n){
+        
+        if(current.next.value > middle){
+            temp = current.next;
+            current.next = current.next.next;
+            temp.next = null;
+            temp.next = n.next;
+            n.next = temp;
+        } else{
+            current = current.next;
+        }
+
+    }
+
+    let newHead = linked.head;
+
+    while(n.next !== null){
+        if(n.next.value < middle){
+            temp = n.next;
+            n.next = n.next.next;
+            temp.next = null;
+            temp.next = newHead;
+            newHead = temp;
+        } else {
+            n = n.next
+        }
+    }
+
+    linked.head = newHead
+
+    return
+
+}
+
+partition(linkedList, n)
 linkedList.printList()
