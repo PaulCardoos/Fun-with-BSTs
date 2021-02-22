@@ -1,12 +1,8 @@
-class Node{
-    constructor(val){
-        this.value = val
-        this.next = null
-    }
-}
+let Node = require("./Node.js")
+
 
 //stack implemented with a singly linked list
-class Stack{
+module.exports = class Stack{
     constructor(){
         this.top = null
         this.size = 0
@@ -60,20 +56,20 @@ function print(obj){
     console.log(obj)
 }
 
-let stack = new Stack();
-stack.push(2)
-stack.push(13)
-stack.push(89)
-stack.push(91)
-let list = stack.printList()
-print(list)
-// let x = stack.pop()
-// let y = stack.pop()
-// let z = stack.pop()
-// let empty = stack.isEmpty()
-// print("is stack empty: " + empty)
-// let n = stack.pop()
-// empty = stack.isEmpty()
-// print("is stack empty: " + empty)
-// list = stack.printList()
+// let stack = new Stack();
+// stack.push(2)
+// stack.push(13)
+// stack.push(89)
+// stack.push(91)
+// let list = stack.printList()
 // print(list)
+// // let x = stack.pop()
+// // let y = stack.pop()
+// // let z = stack.pop()
+// // let empty = stack.isEmpty()
+// // print("is stack empty: " + empty)
+// // let n = stack.pop()
+// // empty = stack.isEmpty()
+// // print("is stack empty: " + empty)
+// // list = stack.printList()
+// // print(list)
