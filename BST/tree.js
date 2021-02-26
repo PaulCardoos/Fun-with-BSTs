@@ -1,10 +1,4 @@
-class Node{
-    constructor(value){
-        this.value = value; 
-        this.left = null;
-        this.right = null;
-    }
-}
+/* Simple, implementation of a BST to practice BFS and DFS*/
 
 class BST {
     constructor(){
@@ -86,25 +80,4 @@ class BST {
     }
 }
 
-var tree = new BST();
-tree.root = new Node(20);
-tree.root.left = new Node(15);
-tree.root.right = new Node(30);
-tree.insert(new Node(45))
-tree.insert(new Node(29))
-tree.insert(new Node(5));
-console.log(tree);
-let bfs_order = []
-// let found = tree.find(45);
-// let found1 = tree.find(30);
-// let found2 = tree.find(15);
-// let found3 = tree.find(20);
-// let found4 = tree.find(44);
-// let found5 = tree.find(30);
-bfs_order = tree.bfs()
-// console.log(found);
-// console.log(found1);
-// console.log(found2);
-// console.log(found3);
-// console.log(found4);
-console.log(bfs_order)
+module.exports = BST;
