@@ -26,6 +26,13 @@ const postOrderDFS = (tree) => {
     return data;
 }
 
+const inOrderDFS = (tree) => {
+    let data = []
+    let current = tree.root
+    inOrderHelper(current, data)
+    return data
+}
+
 const preOrderHelper = (node, data) => {
     if(node === null) return;
     data.push(node.value)
@@ -33,17 +40,27 @@ const preOrderHelper = (node, data) => {
     if(node.right) preOrderHelper(node.right, data)  
 }
 
+
 const postOrderHelper = (node, data) => {
     if(node === null) return;
     if(node.left) postOrderHelper(node.left, data)
     if(node.right) postOrderHelper(node.right, data)
     data.push(node.value)
-} 
+}
+
+const inOrderHelper = (node, data) => {
+    if(node === null) return;
+    if(node.left) inOrderHelper(node.left, data)
+    data.push(node.value)
+    if(node.right) inOrderHelper(node.right, data)
+}
 
 const pre = preOrderDFS(tree)
 const post = postOrderDFS(tree)
+const inOrder = inOrderDFS(tree)
 console.log(pre)
 console.log(post)
+console.log(inOrder)
 
 
 
