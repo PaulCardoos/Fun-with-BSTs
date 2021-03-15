@@ -1,17 +1,25 @@
-const utils = require('./utils')
+const pqNode = require('./pqNode')
+const utils = require('../utils')
 
-class MaxBinaryHeap{
+//we will use a maxHeap because elements with the highest priority will be 
+//extracted first
+
+module.exports = class PriorityQueue{
     constructor(){
         //we will use an array to model structure of the heap 
-        this.structure = [41,39,33,18,27,12]
+        this.structure = [];
     }
-    insert(value){
+    enqueue(value, priority){
         //add to the end of an array and bubble up
+        const newNode = new pqNode(value, priority);
         const values = this.structure
-        this.structure.push(value)
+        this.structure.push(newNode)
+        if(this.structure.length === 1){
+            return
+        }
         let index = this.structure.length - 1
         let parentIndex = Math.floor((index - 1) / 2)
-        while(values[index] > values[parentIndex]){
+        while(values[index].priority > values[parentIndex].priority){
             //if greater than parent, swap
             let temp;
             temp = values[index]
@@ -24,26 +32,29 @@ class MaxBinaryHeap{
             }
         }
     }
-    extractMax(){
+    dequeue(){
         //this is the reason that it is good for priority Queue
         const values = this.structure
         let length = values.length
         utils.swap(values, 0, length - 1)
-        values.pop()
-        length -= 1
+        const ele = values.pop()
+        length--
 
-        const element = values[0]
+        console.log(values)
+        const element = values[0].priority
         let index = 0
         let leftChild, rightChild, rightChildIdx, leftChildIdx, maxVal
         while(index < length){            
             leftChildIdx = 2 * index + 1 
             rightChildIdx = 2 * index + 2 
+            if(rightChildIdx < length){
+                rightChild = values[rightChildIdx].priority
+            }
             if(leftChildIdx < length){
-                leftChild = values[leftChildIdx]
-                rightChild = values[rightChildIdx]
+                leftChild = values[leftChildIdx].priority
                 if(leftChild > element){
                     if(rightChildIdx < length){
-                        maxVal = utils.getMax(values, leftChildIdx, rightChildIdx)
+                        maxVal = utils.getMaxP(values, leftChildIdx, rightChildIdx)
                         utils.swap(values, index, maxVal)
                         index = maxVal
                   
@@ -52,7 +63,7 @@ class MaxBinaryHeap{
                         index = leftChildIdx
                         
                     }
-                } else if(rightChild > element){
+                } else if(rightChild && rightChild > element){
                         utils.swap(values, index, rightChildIdx)
                         index = rightChildIdx
              
@@ -62,18 +73,18 @@ class MaxBinaryHeap{
 
                 }
             }
-            return element
+            return ele
         }
 
     }
 
 
 
-let heap = new MaxBinaryHeap()
-heap.insert(55)
-heap.insert(1)
-heap.insert(12)
-heap.insert(28)
-heap.extractMax()
-
-console.log(heap.structure)
+// let heap = new MaxBinaryHeap()
+// heap.insert(55)
+// heap.insert(1)
+// heap.insert(12)
+// heap.insert(28)
+// heap.extractMax()
+// heap.extractMax()
+// console.log(heap.structure)
