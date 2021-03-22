@@ -1,4 +1,5 @@
 <h3>Technologies</h3>
+  
 
 <ul>
   <li>Node v14.16.0</li>
@@ -27,6 +28,7 @@ from this point you can run any file as you would run any node program. Make sur
 
 no extra dependencies are needed
 
-<h3>
+<h3>Extras</h3> 
+This is a work in progress. I strive everyday to fully master data structure and algorithms
 
 
