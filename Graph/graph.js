@@ -81,6 +81,30 @@ class Graph{
 
         return order;
     }
+    BFS(vertex){
+        //use an array to mimic Queue FILO
+        const queue = [vertex]
+        const visited = {}
+        const order = []
+
+        visited[vertex] = true
+
+        while(queue.length){
+            //remove from beginning 
+            const next = queue.shift()
+            order.push(next)
+            this.adjacency[next].forEach(neighbor => {
+                if(!visited[neighbor]){
+                    visited[neighbor] = true
+                    //add each neighbor to the queue
+                    queue.push(neighbor)
+                }
+            });
+
+        }
+
+        return order
+    }
 }
 
 /*
@@ -121,5 +145,6 @@ g.addEdge("D", "F")
 g.addEdge("E", "F")
 
 //let order = g.DFSrecursive("A")
-let order = g.DFSiterative("A")
+//let order = g.DFSiterative("A")
+let order = g.BFS("A")
 console.log(order)
