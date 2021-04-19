@@ -69,8 +69,7 @@ class Graph:
                     return True
         print(order)
         return False
-            
-
+    
 if __name__ == "__main__":
     g = Graph()
     g.add_vertex("A")

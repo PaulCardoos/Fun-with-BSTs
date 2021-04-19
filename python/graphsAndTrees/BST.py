@@ -53,6 +53,9 @@ class BST:
             printTreeHelper(root.right)
         
         printTreeHelper(self.root)
+    
+    def allPossiblePaths(self):
+        
         
 
         
