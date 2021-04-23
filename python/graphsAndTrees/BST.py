@@ -25,20 +25,24 @@ class BST:
         """
         def insertNode(root, element):
             if root == None:
-                root = element 
-            elif element.val < root.val:
+                newNode = TreeNode(element)
+                root = newNode 
+            elif element < root.val:
                 if(root.left != None):
                     insertNode(root.left, element)
                 else:
-                    root.left = element
+                    newNode = TreeNode(element)
+                    root.left = newNode
             else:
                 if(root.right != None):
                     insertNode(root.right, element)
                 else:
-                    root.right = element
+                    newNode = TreeNode(element)
+                    root.right = newNode
 
         if self.root == None: 
-            self.root = element
+            newNode = TreeNode(element)
+            self.root = newNode
         else: 
             insertNode(self.root, element)
             
@@ -54,18 +58,33 @@ class BST:
         
         printTreeHelper(self.root)
     
-    def allPossiblePaths(self):
+    def buildMinTree(self):
+        """
+        Given a sorted (increasing order) array with unique integer elements, write an algorithm
+         to create a binary search tree with minimal height.
+        """
+
+        def build(arr): 
+            middle = (len(arr) // 2)
+            
+            if middle <= 0: 
+                self.insert(arr[middle])
+                return
+            else:
+                self.insert(arr[middle])
+                build(arr[middle + 1: len(arr) - 1])
+                print("top part: " ,arr)
+                build(arr[0:middle - 1])        
+                print("bottom part: " ,arr)
         
+        build(self.arr)
+
+
         
 
         
         
 if __name__ == "__main__":
-    bst = BST([1,2,3])
-    x = TreeNode(2)
-    y = TreeNode(1)
-    z = TreeNode(3)
-    bst.insert(x)
-    bst.insert(y)
-    bst.insert(z)
+    bst = BST([1,2,3,4,5,6,7])
+    bst.buildMinTree()
     bst.printTree()
